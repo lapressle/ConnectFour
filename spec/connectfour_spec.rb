@@ -12,5 +12,19 @@ describe Game do
         expect(example_game.win_game?).to be(true)
       end
     end
+
+    context 'when the board has a complete column' do
+      it 'returns true' do
+        allow(game_board).to receive(:complete_column?).and_return(true)
+        expect(example_game.win_game?).to be(true)
+      end
+    end
+
+    context 'when the board has a complete diagonal' do
+      it 'returns true' do
+        allow(game_board).to receive(:complete_diagonal?).and_return(true)
+        expect(example_game.win_game?).to be(true)
+      end
+    end
   end
 end
