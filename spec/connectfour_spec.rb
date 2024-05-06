@@ -41,21 +41,27 @@ describe Game do
   end
 end
 
-describe Game_Board do 
-  subject(:example_board) { described_class.new() }
+describe Game_Board do
+  subject(:example_board) { described_class.new }
   describe '#complete_row?' do
     context 'when no row is the same' do
       it 'returns false' do
-        example_board.row1 = ['-', '-', 'o', '-']
-        example_board.board[0] = example_board.row1
+        example_board.row2 = ['-', '-', 'o', '-']
+        example_board.board[0] = example_board.row2
         expect(example_board.complete_row?).to be(false)
       end
     end
     context 'when a row is the same' do
       it 'returns true' do
-        example_board.row1 = ['o', 'o', 'o', 'o']
+        example_board.row1 = %w[o o o o]
         example_board.board[0] = example_board.row1
         expect(example_board.complete_row?).to be(true)
+      end
+    end
+
+    context 'when the board is in starting configuration' do
+      it 'returns false' do
+        expect(example_board.complete_row?).to be(false)
       end
     end
   end

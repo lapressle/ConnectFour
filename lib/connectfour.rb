@@ -26,12 +26,10 @@ class Game_Board
   end
 
   def complete_row?
-    for row in @board do
-      return true if row.uniq.count <= 1
-
-      return false
-
+    board.each do |row|
+      return true if row.uniq.count <= 1 && row.uniq != ['-']
     end
+    false
   end
 
   def complete_column?; end
