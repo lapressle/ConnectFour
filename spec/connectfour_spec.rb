@@ -65,4 +65,17 @@ describe Game_Board do
       end
     end
   end
+
+  describe '#complete_column?' do
+    context 'when a column is the same' do
+      it 'returns true' do
+        row = ['o', '-', '-', '-']
+        example_board.board[0] = row
+        example_board.board[1] = row
+        example_board.board[2] = row
+        example_board.board[3] = row
+        expect(example_board.complete_column?).to be(true)
+      end
+    end
+  end
 end

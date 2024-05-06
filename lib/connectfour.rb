@@ -32,7 +32,21 @@ class Game_Board
     false
   end
 
-  def complete_column?; end
+  def complete_column?
+    columns = [[],[],[],[]]
+    n = 0
+    board.each do |row|
+      row.each do |char|
+        columns[n].append(char)
+        n += 1
+      end
+      n = 0
+    end
+    columns.each do |column|
+      return true if column.uniq.count <= 1 && column.uniq != ['-']
+    end
+    false
+  end
 
   def complete_diagonal?; end
 end
