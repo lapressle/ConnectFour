@@ -120,4 +120,16 @@ class Game_Board
     end
     false
   end
+
+  def board_state
+    board_string = ''
+    board.each do |row|
+      row_string = '|'
+      row.each do |char|
+        row_string += char + '|'
+      end
+      board_string += row_string + "\n"
+    end
+    puts board_string
+  end
 end

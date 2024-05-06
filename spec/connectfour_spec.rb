@@ -130,11 +130,14 @@ describe Game_Board do
     end
   end
 
-  # describe '#show_board' do
-  #   it 'returns the current board state' do
-  #     board_row = '-|-|-|-'
-  #     board_state = board_row + "\n" + board_row + "\n" + board_row + "\n" + board_row
-  #     expect(example_board).to receive(:puts).with(board_state)
-  #   end
-  # end
+  describe '#show_board' do
+    it 'returns the current board state' do
+      board_state = ''
+      6.times do
+        board_state += "|-|-|-|-|-|-|-|\n"
+      end
+      expect(example_board).to receive(:puts).with(board_state)
+      example_board.board_state
+    end
+  end
 end
