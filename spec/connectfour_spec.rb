@@ -142,13 +142,20 @@ describe Game_Board do
   end
 
   describe '#update_board' do
-    context 'when a column is given and no previous pieces' do
+    context 'when a column is given and no previous pieces are in play' do
       it 'replaces filler character with player piece' do
         expect { example_board.update_board(1, 'x') }.to change { example_board.board[-1][0] }.to('x')
       end
 
       it 'replaces filler character with player piece' do
         expect { example_board.update_board(2, 'o') }.to change { example_board.board[-1][1] }.to('o')
+      end
+    end
+
+    context 'when a column is given and previous pieces are in play' do
+      it 'replaces next filler piece in column wiht player piece' do
+        example_board.board[-1][0] = 'x'
+        expect { example_board.update_board(1, 'o') }.to change { example_board.board[-2][0] }.to('o')
       end
     end
   end

@@ -134,6 +134,10 @@ class Game_Board
   end
 
   def update_board(column, piece)
-    board[-1][column - 1] = piece
+    loc = -1
+    board.each do |row|
+      loc += 1 if row[column - 1] == '-'
+    end
+    board[loc][column - 1] = piece
   end
 end
