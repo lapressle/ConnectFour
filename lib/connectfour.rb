@@ -140,4 +140,10 @@ class Game_Board
     end
     board[loc][column - 1] = piece
   end
+
+  def column_full?(column)
+    return true if board[0][column - 1] != '-'
+
+    false
+  end
 end

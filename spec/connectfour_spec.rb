@@ -153,9 +153,26 @@ describe Game_Board do
     end
 
     context 'when a column is given and previous pieces are in play' do
-      it 'replaces next filler piece in column wiht player piece' do
+      it 'replaces next filler piece in column with player piece' do
         example_board.board[-1][0] = 'x'
         expect { example_board.update_board(1, 'o') }.to change { example_board.board[-2][0] }.to('o')
+      end
+    end
+  end
+
+  describe '#column_full?' do
+    context 'when a column is full of player pieces' do
+      it 'returns true' do
+        example_board.board.each do |row|
+          row[0] = 'x'
+        end
+        expect(example_board.column_full?(1)).to be(true)
+      end
+    end
+
+    context 'when a column is not full of player pieces' do
+      it 'returns false' do
+        expect(example_board.column_full?(1)).to be(false)
       end
     end
   end
