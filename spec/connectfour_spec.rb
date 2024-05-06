@@ -74,5 +74,55 @@ describe Game_Board do
         expect(example_board.complete_column?).to be(true)
       end
     end
+
+    context 'when no column is the same' do
+      it 'returns true' do
+        row = ['x', '-', '-', '-']
+        example_board.board[0] = row
+        expect(example_board.complete_column?).to be(false)
+      end
+    end
+
+    context 'when the board is in starting configuration' do
+      it 'returns false' do
+        expect(example_board.complete_column?).to be(false)
+      end
+    end
+  end
+
+  describe '#complete_diagonal?' do
+    context 'when a diagonal is the same' do
+      it 'returns true' do
+        row1 = ['x', '-', '-', '-']
+        row2 = ['-', 'x', '-', '-']
+        row3 = ['-', '-', 'x', '-']
+        row4 = ['-', '-', '-', 'x']
+        example_board.board[0] = row1
+        example_board.board[1] = row2
+        example_board.board[2] = row3
+        example_board.board[3] = row4
+        expect(example_board.complete_diagonal?).to be(true)
+      end
+    end
+
+    context 'when no diagonal is the same' do
+      it 'returns true' do
+        row1 = ['x', '-', '-', '-']
+        row2 = ['-', 'o', '-', '-']
+        row3 = ['-', '-', 'x', '-']
+        row4 = ['-', '-', '-', 'x']
+        example_board.board[0] = row1
+        example_board.board[1] = row2
+        example_board.board[2] = row3
+        example_board.board[3] = row4
+        expect(example_board.complete_diagonal?).to be(false)
+      end
+    end
+
+    context 'when the board is in starting configuration' do
+      it 'returns false' do
+        expect(example_board.complete_diagonal?).to be(false)
+      end
+    end
   end
 end
