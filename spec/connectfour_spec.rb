@@ -46,14 +46,14 @@ describe Game_Board do
   describe '#complete_row?' do
     context 'when no row is the same' do
       it 'returns false' do
-        example_board.row2 = ['-', '-', 'o', '-']
+        example_board.row2 = ['-', '-', 'o', '-', '-', 'o', '-']
         example_board.board[0] = example_board.row2
         expect(example_board.complete_row?).to be(false)
       end
     end
     context 'when a row is the same' do
       it 'returns true' do
-        example_board.row1 = %w[o o o o]
+        example_board.row1 = %w[o o o o o o o]
         example_board.board[0] = example_board.row1
         expect(example_board.complete_row?).to be(true)
       end
@@ -69,7 +69,7 @@ describe Game_Board do
   describe '#complete_column?' do
     context 'when a column is the same' do
       it 'returns true' do
-        row = ['o', '-', '-', '-']
+        row = ['o', '-', '-', '-', '-', '-']
         example_board.board.map! { row }
         expect(example_board.complete_column?).to be(true)
       end
@@ -77,7 +77,7 @@ describe Game_Board do
 
     context 'when no column is the same' do
       it 'returns true' do
-        row = ['x', '-', '-', '-']
+        row = ['x', '-', '-', '-', 'o', 'x']
         example_board.board[0] = row
         expect(example_board.complete_column?).to be(false)
       end
@@ -93,24 +93,28 @@ describe Game_Board do
   describe '#complete_diagonal?' do
     context 'when a diagonal is the same' do
       it 'returns true' do
-        row1 = ['x', '-', '-', '-']
-        row2 = ['-', 'x', '-', '-']
-        row3 = ['-', '-', 'x', '-']
-        row4 = ['-', '-', '-', 'x']
+        row1 = ['x', '-', '-', '-', '-', '-', '-']
+        row2 = ['-', 'x', '-', '-', '-', '-', '-']
+        row3 = ['-', '-', 'x', '-', '-', '-', '-']
+        row4 = ['-', '-', '-', 'x', '-', '-', '-']
+        row5 = ['-', '-', '-', '-', 'x', '-', '-']
+        row6 = ['-', '-', '-', '-', '-', 'x', '-']
         example_board.board[0] = row1
         example_board.board[1] = row2
         example_board.board[2] = row3
         example_board.board[3] = row4
+        example_board.board[4] = row5
+        example_board.board[5] = row6
         expect(example_board.complete_diagonal?).to be(true)
       end
     end
 
     context 'when no diagonal is the same' do
       it 'returns true' do
-        row1 = ['x', '-', '-', '-']
-        row2 = ['-', 'o', '-', '-']
-        row3 = ['-', '-', 'x', '-']
-        row4 = ['-', '-', '-', 'x']
+        row1 = ['x', '-', '-', '-', '-', '-', 'x']
+        row2 = ['-', 'x', '-', '-', '-', 'o', 'x']
+        row3 = ['-', '-', 'o', '-', 'x', '-', 'x']
+        row4 = ['-', '-', '-', 'x', '-', '-', '-']
         example_board.board[0] = row1
         example_board.board[1] = row2
         example_board.board[2] = row3
@@ -125,4 +129,12 @@ describe Game_Board do
       end
     end
   end
+
+  # describe '#show_board' do
+  #   it 'returns the current board state' do
+  #     board_row = '-|-|-|-'
+  #     board_state = board_row + "\n" + board_row + "\n" + board_row + "\n" + board_row
+  #     expect(example_board).to receive(:puts).with(board_state)
+  #   end
+  # end
 end
