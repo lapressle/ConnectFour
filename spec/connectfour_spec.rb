@@ -70,10 +70,7 @@ describe Game_Board do
     context 'when a column is the same' do
       it 'returns true' do
         row = ['o', '-', '-', '-']
-        example_board.board[0] = row
-        example_board.board[1] = row
-        example_board.board[2] = row
-        example_board.board[3] = row
+        example_board.board.map! { row }
         expect(example_board.complete_column?).to be(true)
       end
     end
