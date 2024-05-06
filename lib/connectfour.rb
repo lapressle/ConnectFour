@@ -27,8 +27,11 @@ class Game_Board
   def complete_row?
     for row in @board do
       if row.uniq.count <= 1
+        return true
+      else
         return false
       end
+
     end
   end
 
