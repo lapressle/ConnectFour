@@ -132,4 +132,8 @@ class Game_Board
     end
     puts board_string
   end
+
+  def update_board(column, piece)
+    board[-1][column - 1] = piece
+  end
 end
