@@ -14,9 +14,10 @@ class Game
   end
 end
 
-class Game_Board 
+class Game_Board
   attr_accessor :row1, :row2, :row3, :row4, :board
-  def initialize()
+
+  def initialize
     @row1 = ['-', '-', '-', '-']
     @row2 = ['-', '-', '-', '-']
     @row3 = ['-', '-', '-', '-']
@@ -26,18 +27,14 @@ class Game_Board
 
   def complete_row?
     for row in @board do
-      if row.uniq.count <= 1
-        return true
-      else
-        return false
-      end
+      return true if row.uniq.count <= 1
+
+      return false
 
     end
   end
 
-  def complete_column?
-  end
+  def complete_column?; end
 
-  def complete_diagonal?
-  end
+  def complete_diagonal?; end
 end
