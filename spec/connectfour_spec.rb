@@ -3,9 +3,9 @@
 require_relative '../lib/connectfour'
 
 describe Game do
+  subject(:example_game) { described_class.new(game_board) }
+  let(:game_board) { instance_double(Game_Board) }
   describe '#win_game?' do
-    subject(:example_game) { described_class.new(game_board) }
-    let(:game_board) { instance_double(Game_Board) }
     context 'when the board has a complete row' do
       it 'returns true' do
         allow(game_board).to receive(:complete_row?).and_return(true)
