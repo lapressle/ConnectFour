@@ -27,7 +27,19 @@ class Game
 
   def make_move(player)
     choice = player_input
-    @game_board.update_board(choice, player.token)
+    @game_board.update_board(choice.to_i, player.token)
+    @game_board.board_state
+  end
+
+  def play_game
+    @game_board.board_state
+    until win_game? == true
+      make_move(@player_one)
+      return p 'Congrats player one!' if win_game? == true
+
+      make_move(@player_two)
+      return p 'Congrats player two!' if win_game? == true
+    end
   end
 end
 
@@ -172,3 +184,6 @@ class Player
     @token = token
   end
 end
+
+# game = Game.new
+# game.play_game

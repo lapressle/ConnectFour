@@ -78,7 +78,22 @@ describe Game do
     end
     it 'call board to update' do
       expect(game_board).to receive(:update_board).once
+      expect(game_board).to receive(:board_state).once
       example_game.make_move(player)
+    end
+  end
+
+  describe '#play_game' do
+    let(:player) { double(:player, token: 'x') }
+    context 'when win_game? is false once' do
+      before do
+        allow(game_board).to receive(:board_state)
+        allow(example_game).to receive(:win_game?).and_return(false, true)
+      end
+      it 'runs through make_move once' do
+        expect(example_game).to receive(:make_move).once
+        example_game.play_game
+      end
     end
   end
 end
