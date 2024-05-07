@@ -39,6 +39,37 @@ describe Game do
       end
     end
   end
+
+  describe '#player_input' do
+    context 'when given the correct input' do
+      before do
+        io_obj = double
+        valid_input = '3'
+        allow(example_game).to receive(:gets).and_return(io_obj)
+        allow(io_obj).to receive(:chomp).and_return(valid_input)
+      end
+      it 'stops loop and does not display error message' do
+        error_message = 'Input error! Please enter a number between 1 to 7.'
+        expect(example_game).not_to receive(:puts).with(error_message)
+        example_game.player_input
+      end
+    end
+
+    context 'when given the incorrect input once then correct input' do
+      before do
+        io_obj = double
+        invalid_input = 'x'
+        valid_input = '3'
+        allow(example_game).to receive(:gets).and_return(io_obj, io_obj)
+        allow(io_obj).to receive(:chomp).and_return(invalid_input, valid_input)
+      end
+      it 'completes loop and displays error message once' do
+        error_message = 'Input error! Please enter a number between 1 to 7.'
+        expect(example_game).to receive(:puts).with(error_message).once
+        example_game.player_input
+      end
+    end
+  end
 end
 
 describe Game_Board do

@@ -12,6 +12,16 @@ class Game
       false
     end
   end
+
+  def player_input
+    p 'Pick a column from 1 to 7 to play'
+    input = gets.chomp
+    while Array(1..7).none? { |number| number.to_s == input }
+      puts 'Input error! Please enter a number between 1 to 7.'
+      input = gets.chomp
+    end
+    input
+  end
 end
 
 class Game_Board
