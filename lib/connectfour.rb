@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Game
+  attr_reader :player_one
+
   def initialize(game_board = Game_Board.new())
     @game_board = game_board
     @player_one = Player.new('x')
@@ -26,7 +28,8 @@ class Game
   end
 
   def make_move(player)
-    choice = player_input
+    # choice = player_input
+    choice = '1'
     @game_board.update_board(choice.to_i, player.token)
     @game_board.board_state
   end
@@ -47,8 +50,7 @@ class Game_Board
   attr_accessor :row1, :row2, :row3, :row4, :board
 
   def initialize
-    @row = ['-', '-', '-', '-', '-', '-', '-']
-    @board = [@row, @row, @row, @row, @row, @row]
+    @board = Array.new(6) { ['-', '-', '-', '-', '-', '-', '-'] }
   end
 
   def complete_row?
@@ -186,4 +188,4 @@ class Player
 end
 
 # game = Game.new
-# game.play_game
+# game.make_move(game.player_one)
