@@ -70,6 +70,17 @@ describe Game do
       end
     end
   end
+
+  describe '#make_move' do
+    let(:player) { double(:player, token: 'x') }
+    before do
+      allow(example_game).to receive(:player_input).and_return('1')
+    end
+    it 'call board to update' do
+      expect(game_board).to receive(:update_board).once
+      example_game.make_move(player)
+    end
+  end
 end
 
 describe Game_Board do

@@ -3,6 +3,8 @@
 class Game
   def initialize(game_board = Game_Board.new())
     @game_board = game_board
+    @player_one = Player.new('x')
+    @player_two = Player.new('o')
   end
 
   def win_game?
@@ -21,6 +23,11 @@ class Game
       input = gets.chomp
     end
     input
+  end
+
+  def make_move(player)
+    choice = player_input
+    @game_board.update_board(choice, player.token)
   end
 end
 
@@ -155,5 +162,13 @@ class Game_Board
     return true if board[0][column - 1] != '-'
 
     false
+  end
+end
+
+class Player
+  attr_reader :token
+
+  def initialize(token)
+    @token = token
   end
 end
